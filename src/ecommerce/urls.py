@@ -18,16 +18,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib import admin
-from django.conf.urls import url
+from django.conf.urls import url, include
 
-from products.views import (
-    ProductListView, 
-    product_list_view, 
-    ProductDetailView, 
-    product_detail_view,
-    ProductFeaturedListView,
-    ProductFeaturedDetailView
-    )
+#from products.views import (
+    #ProductListView, 
+    #product_list_view, 
+    #ProductDetailView,
+    #ProductDetailSlugView, 
+    #product_detail_view,
+    #ProductFeaturedListView,
+    #ProductFeaturedDetailView
+    #)
 
 from .views import home_page, about_page, contact_page, login_page, register_page
 
@@ -38,12 +39,14 @@ urlpatterns = [
     url('contact/', contact_page),
     url('login/', login_page),
     url('register/', register_page),
-    url('featured/', ProductFeaturedListView.as_view()),
-    url(r'featured/(?P<pk>\d+)', ProductFeaturedDetailView.as_view()),
-    url('products/', ProductListView.as_view()),
-    url('products-fbv/', product_list_view),
-    url(r'products/(?P<pk>\d+)', ProductDetailView.as_view()),
-    url(r'products-fbv/(?P<pk>\d+)', product_detail_view),
+    url('products/', include("products.urls")),
+    #url('featured/', ProductFeaturedListView.as_view()),
+    #url(r'featured/(?P<pk>\d+)', ProductFeaturedDetailView.as_view()),
+    #url('products/', ProductListView.as_view()),
+    #url('products-fbv/', product_list_view),
+    #url(r'products/(?P<pk>\d+)', ProductDetailView.as_view()),
+    #url(r'products/(?P<slug>[\w-]+)', ProductDetailSlugView.as_view()),
+    #url(r'products-fbv/(?P<pk>\d+)', product_detail_view),
     url('', home_page),
 ]
 
