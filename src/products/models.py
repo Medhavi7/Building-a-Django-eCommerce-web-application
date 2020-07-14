@@ -18,9 +18,17 @@ def upload_image_path(instance, filename):
         final_filename=final_filename
         )
 
-class ProductManager(models.Manager):
+class ProductQueryset(models.query.QuerySet):
     def featured(self):
-        return self.get_queryset().filter(featured=True)
+        return self.filter(featured=True)
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return ProductQueryset(self.model, using=self._db)
+
+    def features(self):
+        return self.get_queryset().featured()
+
     def get_by_id(self, id):
         qs=self.get_queryset().filter(id=id)
         if qs.count()==1:
