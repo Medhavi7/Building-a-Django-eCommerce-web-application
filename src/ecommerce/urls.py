@@ -34,12 +34,13 @@ from .views import home_page, about_page, contact_page, login_page, register_pag
 
 urlpatterns = [
     
-    url('admin/', admin.site.urls),
+    
     url('about/', about_page),
     url('contact/', contact_page),
     url('login/', login_page),
     url('register/', register_page),
     url('products/', include("products.urls")),
+    url('admin/', admin.site.urls),
     #url('featured/', ProductFeaturedListView.as_view()),
     #url(r'featured/(?P<pk>\d+)', ProductFeaturedDetailView.as_view()),
     #url('products/', ProductListView.as_view()),
@@ -47,7 +48,7 @@ urlpatterns = [
     #url(r'products/(?P<pk>\d+)', ProductDetailView.as_view()),
     #url(r'products/(?P<slug>[\w-]+)', ProductDetailSlugView.as_view()),
     #url(r'products-fbv/(?P<pk>\d+)', product_detail_view),
-    url('', home_page),
+    # url('', home_page),
 ]
 
 
