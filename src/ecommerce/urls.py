@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.views.generic import TemplateView
 
 #from products.views import (
     #ProductListView, 
@@ -39,6 +40,7 @@ urlpatterns = [
     url('contact/', contact_page, name='contact'),
     url('login/', login_page, name='login'),
     url('register/', register_page, name='register'),
+    url('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
     url('products/', include("products.urls", namespace='products')),
     url('admin/', admin.site.urls),
     #url('featured/', ProductFeaturedListView.as_view()),

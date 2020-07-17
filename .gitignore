@@ -7,3 +7,4 @@ db.sqlite3
 /static
 .DS_Store
 src/ecommerce/creds.py
+src/templates/bootstrap
