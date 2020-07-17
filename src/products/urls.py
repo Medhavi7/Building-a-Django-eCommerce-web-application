@@ -1,6 +1,8 @@
 
 from django.conf.urls import url
 
+app_name = 'products'
+
 from .views import (
     ProductListView, 
     #product_list_view, 
