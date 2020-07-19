@@ -7,5 +7,5 @@ from .views import (
     )
 
 urlpatterns = [
-    url('', SearchProductView.as_view(), name='list'),
+    url('', SearchProductView.as_view(), name='query'),
 ]
