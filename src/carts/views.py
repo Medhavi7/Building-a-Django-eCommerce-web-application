@@ -2,15 +2,17 @@ from django.shortcuts import render
 
 from .models import Cart
 
+
 def cart_home(request):
-	request.session['cart_id'] = "abc"
-	cart_id = request.session.get("cart_id", None)
-	if cart_id is None:
-		cart_obj = Cart.objects.create(user=None)
-		request.session['cart_id'] = cart_obj.id
-		print('New Cart created')
-	else:
-		print('Cart ID exists')
-		print(cart_id)
-		cart_obj = Cart.objects.get(id=cart_id)
+	cart_obj, new_obj = Cart.objects.new_or_get(request)
+	# print(cart_obj)	
+	products = cart_obj.products.all()
+	total = 0
+	print(products)
+	for x in products:
+		print(x)
+		total = total + x.price
+	print(total)
+	cart_obj.total = total
+	cart_obj.save()
 	return render(request, "carts/home.html", {})
