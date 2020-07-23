@@ -34,6 +34,7 @@ class Cart(models.Model):
 	user		= models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 	products	= models.ManyToManyField(Product, blank=True)
 	total		= models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
+	subtotal	= models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
 	updated		= models.DateTimeField(auto_now=True)
 	timestamp	= models.DateTimeField(auto_now_add=True)
 
@@ -42,21 +43,28 @@ class Cart(models.Model):
 	def __str__(self):
 		return str(self.id)
 
-	def pre_save_cart_receiver(sender, instance, action, *args, **kwargs):
-		print(action)
-		products = instance.products.all()
-		total = 0
-		print(products)
-		for x in products:
-			print(x)
-			total = total + x.price
-		print(total)
-		instance.total = total
+	def m2m_changed_cart_receiver(sender, instance, action, *args, **kwargs):
+		if action == 'post_add' or action =='post_remove' or action == 'post_clear':
+			products = instance.products.all()
+			total = 0
+			for x in products:
+				#print(x)
+				total = total + x.price
+			#print(total)
+			if instance.subtotal != total:
+				instance.subtotal = total
+				instance.save()
 	
 
-m2m_changed.connect(pre_save_cart_receiver, sender=Cart)
+#m2m_changed.connect(m2m_changed_cart_receiver, sender=Cart.products.through)
+
+def pre_save_cart_receiver(sender, instance, *args, **kwargs):
+	instance.total = instance.subtotal * 10 #* 1.08
+
+pre_save.connect(pre_save_cart_receiver, sender=Cart)
 
 '''
+
 from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save, m2m_changed
