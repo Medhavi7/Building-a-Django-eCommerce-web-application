@@ -4,15 +4,21 @@
 
 
     <div class='row'>
-        <div class='col'>
+        <div class='col-12 col-md-6'>
             <h1>{{ object.title }} </h1><br/>
             {{ object.timestamp|timesince }} ago
-            
             {{ object.description|linebreaks }} <br/>
             {% if object.image %}
                 <img src='{{ object.image.url }}' class='img-fluid' />
             {% endif %}
-</div>
+		</div>
+		<div class='col-12 col-md-6'>
+			{% if object in cart.products.all %}
+			In cart <button clas='btn btn-link'>Remove?</button>
+			{% else %}
+			<button class='byn byn-success'>Add to cart?</button>
+		{% endif %}
+	</div>
 </div>
 
 

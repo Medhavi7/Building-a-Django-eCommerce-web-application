@@ -5,12 +5,7 @@ app_name = 'products'
 
 from .views import (
     ProductListView, 
-    #product_list_view, 
-    #ProductDetailView,
     ProductDetailSlugView, 
-    #product_detail_view,
-    #ProductFeaturedListView,
-    #ProductFeaturedDetailView
     )
 
 
