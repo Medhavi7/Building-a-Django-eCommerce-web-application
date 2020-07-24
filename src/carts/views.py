@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from products.models import Product
 from .models import Cart
 
 
@@ -16,3 +17,7 @@ def cart_home(request):
 	cart_obj.total = total
 	cart_obj.save()
 	return render(request, "carts/home.html", {})
+
+def cart_update(request):
+	obj = Product.objects.get(id=1)
+	return
