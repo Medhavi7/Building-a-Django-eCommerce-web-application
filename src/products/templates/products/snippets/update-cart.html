@@ -2,7 +2,7 @@
 	<input type='hidden' name='product_id' value='{{ product.id }}' />
 
 	{% if in_cart %}
-		<button type='submit' class='btn btn-link btn-sm'>Remove?</button>
+		<button type='submit' class='btn btn-link btn-sm' style='padding:0ps; cursor: pointer;'>Remove?</button>
 	{% else %}
 	    {% if object in cart.products.all %}
 			In cart <button type='submit' clas='btn btn-link'>Remove? </button>
