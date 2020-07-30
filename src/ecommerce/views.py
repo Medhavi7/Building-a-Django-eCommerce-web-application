@@ -31,12 +31,7 @@ def contact_page(request):
        
     }
     if contact_form.is_valid():
-        print(contact_form.cleaned_data)
-    #if request.method=="POST":
-        #print(request.POST)
-        #print(request.POST.get('fullname'))
-        #print(request.POST.get('email'))
-        #print(request.POST.get('content'))   
+        print(contact_form.cleaned_data) 
     return render(request, "contact/view.html", context)
 
 def login_page(request):
@@ -45,7 +40,6 @@ def login_page(request):
         "form" : form
     }
     print("User logged in.")
-    #print(request.user.is_authenticated)
     if form.is_valid():
         print(form.cleaned_data)
         username=form.cleaned_data.get("username")
