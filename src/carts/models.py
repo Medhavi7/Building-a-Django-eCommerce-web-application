@@ -11,7 +11,7 @@ class CartManager(models.Manager):
 		if qs.count() == 1:
 			new_obj = False
 			cart_obj = qs.first()
-			if request.user.is_authenticated: #and cart_obj.user is None:
+			if request.user.is_authenticated: 
 				cart_obj.user = request.user
 				cart_obj.save()
 		else:
@@ -45,9 +45,7 @@ class Cart(models.Model):
 			products = instance.products.all()
 			total = 0
 			for x in products:
-				#print(x)
 				total = total + x.price
-			#print(total)
 			if instance.subtotal != total:
 				instance.subtotal = total
 				instance.save()
