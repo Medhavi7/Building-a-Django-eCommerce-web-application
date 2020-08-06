@@ -13,12 +13,12 @@ def get_filename_ext(filepath):
     return name, ext
 
 def upload_image_path(instance, filename):
-    new_filename=random.randint(1, 3567290390)
-    name, ext=get_filename_ext(filename)
-    final_filename='{new_filename}{ext}'.format(new_filename=new_filename, ext=ext)
+    new_filename = random.randint(1, 3567290390)
+    name, ext = get_filename_ext(filename)
+    final_filename = '{new_filename}{ext}'.format(new_filename = new_filename, ext = ext)
     return "products/{new_filename}/{final_filename}".format(
-        new_filename=new_filename, 
-        final_filename=final_filename
+        new_filename = new_filename, 
+        final_filename = final_filename
         )
 
 class ProductQueryset(models.query.QuerySet):
@@ -29,7 +29,7 @@ class ProductQueryset(models.query.QuerySet):
         return self.filter(featured=True, active=True)
 
     def search(self, query):
-        lookups=(Q(title__icontains=query) |
+        lookups = (Q(title__icontains=query) |
         Q(description__icontains=query) |
         Q(price__icontains=query) |
         Q(tag__title__icontains=query)
