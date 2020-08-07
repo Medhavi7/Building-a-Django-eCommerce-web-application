@@ -23,7 +23,7 @@
             <a class="nav-link" href="{{ product_list_url }}">P</i></a>
         </li>
         <li class="nav-item {% if request.path == cart_url %}active{% endif %}">
-            <a class="nav-link" href="{{ cart_url }}">{{ request.session.cart_items }} <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+            <a class="nav-link" href="{{ cart_url }}">{{ request.session.cart_items }} <i class="fa fa-shopping-cart"></i></a>
         </li>
         <li class="nav-item {% if request.path == contact_url %}active{% endif %}">
             <a class="nav-link" href="{{ contact_url }}"><i class="fa fa-phone"></i></a>
